@@ -38,6 +38,8 @@ class Viking extends Soldier {
   }
 }
 
+const vik = new Viking("Vik", 100, 150)
+const harold = new Viking("Harold", 80, 100)
 
 
 
@@ -54,6 +56,10 @@ class Saxon extends Soldier {
     return this.health <= 0 ? `A Saxon has died in combat` : `A Saxon has received ${damage} points of damage` 
   }
 }
+
+const brit = new Saxon(90, 100)
+const brit2 = new Saxon(120, 10)
+const brit3 = new Saxon(10, 100)
 
 
 
@@ -74,26 +80,23 @@ class War {
   }
 
   vikingAttack(){
-    //creates a dice to use multiple times
-    let dice = Math.floor(Math.random()*this.vikingArmy.length
-    
     
     let randomViking = Math.floor(Math.random()* this.vikingArmy.length);
     let randomSaxon = Math.floor(Math.random()* this.saxonArmy.length);
-
 
     let selectedViking = this.vikingArmy[randomViking];
 
     let attackedSaxon = this.saxonArmy[randomSaxon].receiveDamage(selectedViking.attack());
     if(attackedSaxon.health <= 0){
-      return this.saxonArmy.replace(randomSaxon);
+      this.saxonArmy.splice(attackedSaxon, 1);
     }
   }
 
 }
 
-// const war = new War(addViking(100, 11, "Vik"));
-// console.log(war);
+const hastings = new War()
+console.log(vik);
+console.log(hastings.addViking(vik));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
